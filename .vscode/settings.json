@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "bignumber.h": "c",
+        "time.h": "c"
+    }
+}
