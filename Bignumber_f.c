@@ -1058,3 +1058,18 @@ void LongDivision_Bit(bigint_st_ptr *bi_X, bigint_st_ptr *bi_Y, bigint_st_ptr *b
    delete_bigint(&Temp);  //메모리 동적할당 해제
    delete_bigint(&Temp2); //위와 같음
 }
+
+void generate_random_Prime(bigint_st_ptr *bi_X,int sign, int wordlen)
+{
+   if (*bi_X != NULL)
+      delete_bigint(bi_X);
+
+   int cnt_i;
+   word *Input;// Word의 배열을 동적할당으로 만들어주고 배열에 랜덤값을 대입, 최종적으로 Set_bigint 함수의 input값을 맞춰줌
+   Input = (word *)calloc(wordlen, sizeof(word)); // 배열 동적할당
+   get_random_array(Input, wordlen);              // 기존에 만들어 놓았던 랜덤 함수를 이용 값을 대입시켜 줌.
+
+   //!!____ Working
+   set_bigint(bi_X, sign, wordlen, Input);
+   free(Input);    // 할당된 메모리를 Free
+}

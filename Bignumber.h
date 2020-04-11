@@ -9,6 +9,7 @@
 #include <memory.h>
 #include <string.h>
 #include <time.h>
+#include <openssl/rsa.h>
 
 #define NEGATIVE 1
 #define NON_NEGATIVE 0
@@ -68,14 +69,17 @@ void optimize(bigint_st_ptr *bi_X);
 void Left_Shift(bigint_st_ptr *bi_X,int shift);
 void Right_Shift(bigint_st_ptr *bi_X,int shift);
 void Reduction(bigint_st_ptr *bi_X,int pwr_of_2);
+
 //! Addition
 void add_Core_carry(word src1, word src2, int *carry);
 void add_Core(bigint_st_ptr *bi_X,bigint_st_ptr *bi_Y,bigint_st_ptr *bi_Z);
 void Addition(bigint_st_ptr *bi_X,bigint_st_ptr *bi_Y,bigint_st_ptr *bi_Z);
+
 //! Subtraction
 int sub_Core_borrow(word a, word b);
 void sub_Core(bigint_st_ptr *bi_X,bigint_st_ptr *bi_,bigint_st_ptr *bi_Z);
 void Subtraction(bigint_st_ptr *bi_X,bigint_st_ptr *bi_Y,bigint_st_ptr *bi_Z);
+
 //! Multiplication with Karatsuba
 void Mul_Core_word(word A, word B,bigint_st_ptr *mul_word);
 void Mul_Core(bigint_st_ptr *bi_X,bigint_st_ptr *bi_Y,bigint_st_ptr *bi_Z);
@@ -84,12 +88,17 @@ void Wordlen_Add_Realloc(bigint_st_ptr *bi_X, int add_wordlen);
 void Set_Same_Wordlen_Karatsuba(bigint_st_ptr *bi_X, bigint_st_ptr *bi_Y);
 void Mul_Core_Krsb(bigint_st_ptr *bi_X,bigint_st_ptr *bi_Y, bigint_st_ptr *bi_Z,int *count);
 void Multiplication_Karatsuba(bigint_st_ptr *bi_X, bigint_st_ptr *bi_Y, bigint_st_ptr *bi_Z,int *count);
+
 //! Squaring function
 void Squaring_Core_word(word A,bigint_st_ptr *squaring_word);
 void Squaring_Core(bigint_st_ptr *bi_X, bigint_st_ptr *bi_Z);
 void Squaring(bigint_st_ptr *bi_X, bigint_st_ptr *bi_Z);
 void Squaring_Karatsuba(bigint_st_ptr *bi_X, bigint_st_ptr *bi_Z,int *count);
+
 //! Long_division_bit_version
 void LongDivision_Bit(bigint_st_ptr *bi_X, bigint_st_ptr *bi_Y, bigint_st_ptr* bi_Q,bigint_st_ptr* bi_R);
- 
+
+//! Make_a Random Prime 
+void generate_random_Prime(bigint_st_ptr *bi_X,int sign, int wordlen);
+
 #endif
